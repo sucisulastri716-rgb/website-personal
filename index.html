@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seblak - Pedasnya Bikin Nagih</title>
+    <!-- Load Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Custom Styles for Animations -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #2c2924;
+            color: #131212;
+            overflow-x: hidden;
+        }
+
+        .font-playfair {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Hero section animations */
+        .hero-title, .hero-subtitle, .hero-button {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+
+        .hero-title.animate-in { opacity: 1; transform: translateY(0); }
+        .hero-subtitle.animate-in { opacity: 1; transform: translateY(0); transition-delay: 0.3s; }
+        .hero-button.animate-in { opacity: 1; transform: translateY(0); transition-delay: 0.6s; }
+
+        /* General scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .fade-in.animate-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .slide-in-left.animate-visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .slide-in-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .slide-in-right.animate-visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Timeline specific styling */
+        .timeline {
+            position: relative;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            width: 2px;
+            height: 100%;
+            background: #53a9f0;
+            transform: translateX(-50%);
+            z-index: 0;
+            @media (max-width: 768px) {
+                left: 1rem;
+            }
+        }
+        .timeline-item {
+            position: relative;
+            z-index: 1;
+        }
+        .timeline-item-content {
+            background-color: #9998fd;
+            box-shadow: 0 4px 10px rgba(236, 231, 231, 0.05);
+            padding: 1.5rem;
+            border-radius: 12px;
+        }
+        .timeline-item:nth-child(even) .timeline-item-content {
+            margin-left: 55%;
+        }
+        .timeline-item:nth-child(odd) .timeline-item-content {
+            margin-right: 55%;
+        }
+
+        @media (max-width: 768px) {
+            .timeline-item:nth-child(even) .timeline-item-content,
+            .timeline-item:nth-child(odd) .timeline-item-content {
+                margin: 0;
+            }
+        }
+    </style>
+</head>
+<body class="bg-[#fcf6ee] text-[#2c2c2c]">
+
+    <!-- Header -->
+    <header class="fixed top-0 left-0 w-full z-50 py-4 transition-all duration-300 backdrop-blur-sm">
+        <nav class="container mx-auto flex justify-between items-center px-6 md:px-12">
+            <a href="#home" class="text-3xl md:text-4xl font-playfair font-bold text-[#2c2c2c]">SEBLAK</a>
+            <ul class="hidden md:flex space-x-8 text-lg font-medium">
+                <li><a href="#home" class="hover:text-gray-600 transition duration-300">Beranda</a></li>
+                <li><a href="#history" class="hover:text-gray-600 transition duration-300">Sejarah</a></li>
+                <li><a href="#gallery" class="hover:text-gray-600 transition duration-300">Galeri</a></li>
+                <li><a href="#contact" class="hover:text-gray-600 transition duration-300">Kontak</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative w-full h-screen overflow-hidden flex items-center justify-center text-center text-white">
+        <img src="https://images.unsplash.com/photo-1620718520037-ce9d5f75e01b?q=80&w=1770&auto=format&fit=crop" alt="Seblak" class="absolute inset-0 w-full h-full object-cover z-0">
+        <div class="absolute inset-0 bg-black bg-opacity-50 z-10"></div>
+        <div class="relative z-20 p-6 md:p-12">
+            <h1 class="font-playfair text-6xl md:text-8xl lg:text-9xl font-bold tracking-tight hero-title">Sensasi Pedas Seblak</h1>
+            <p class="mt-4 text-xl md:text-2xl font-light hero-subtitle">Kenikmatan Pedas yang Melegenda</p>
+            <a href="#history" class="mt-8 inline-block px-8 py-4 border-2 border-white rounded-full text-white text-lg font-medium tracking-wider hover:bg-white hover:text-[#2c2c2c] transition-colors duration-300 hero-button">Telusuri Sejarah</a>
+        </div>
+    </section>
+
+    <!-- History Section -->
+    <section id="history" class="py-24 bg-[#fcf6ee]">
+        <div class="container mx-auto px-6 md:px-12">
+            <h2 class="font-playfair text-4xl md:text-5xl font-bold text-center mb-16 slide-in-left">Asal Usul Seblak</h2>
+            <div class="timeline">
+                <div class="timeline-item timeline-item-left mb-24 md:mb-12 slide-in-left">
+                    <div class="timeline-item-content">
+                        <h3 class="text-3xl font-playfair font-bold text">Abad ke-18</h3>
+                        <p class="mt-2 text-lg">Konon seblak sudah ada sejak zaman kerajaan Sunda. Dahulu, makanan ini dibuat dari kerupuk yang direbus hingga lembek dan dibumbui seadanya.</p>
+                    </div>
+                </div>
+                <div class="timeline-item timeline-item-right mb-24 md:mb-12 slide-in-right">
+                    <div class="timeline-item-content">
+                        <h3 class="text-3xl font-playfair font-bold text">2000-an</h3>
+                        <p class="mt-2 text-lg">Popularitas seblak mulai meningkat pesat di Bandung. Para penjual kreatif mulai menambahkan berbagai topping seperti ceker, bakso, dan sosis.</p>
+                    </div>
+                </div>
+                <div class="timeline-item timeline-item-left mb-24 md:mb-12 slide-in-left">
+                    <div class="timeline-item-content">
+                        <h3 class="text-3xl font-playfair font-bold text">2010-an</h3>
+                        <p class="mt-2 text-lg">Seblak menjadi kuliner nasional. Variasi baru terus bermunculan, dari seblak mie hingga seblak instan, menjangkau seluruh Indonesia.</p>
+                    </div>
+                </div>
+                <div class="timeline-item timeline-item-right mb-24 md:mb-12 slide-in-right">
+                    <div class="timeline-item-content">
+                        <h3 class="text-3xl font-playfair font-bold text">Hari Ini</h3>
+                        <p class="mt-2 text-lg">Seblak tidak hanya makanan pedas, tetapi juga simbol kuliner kreatif. Setiap daerah memiliki versi seblak andalannya.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-24 bg-[#fcf6ee]">
+        <div class="container mx-auto px-6 md:px-12">
+            <h2 class="font-playfair text-4xl md:text-5xl font-bold text-center mb-16 fade-in">Galeri Seblak</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="relative overflow-hidden group rounded-lg shadow-lg fade-in">
+                    <img src="cey.jpeg" alt="Seblak Mie" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-4">
+                        <p class="text-white text-lg text-center font-medium">Seblak dengan Mie dan Kerupuk</p>
+                    </div>
+                </div>
+                <div class="relative overflow-hidden group rounded-lg shadow-lg fade-in">
+                    <img src="sulastri.jpeg" alt="Seblak Ceker" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-4">
+                        <p class="text-white text-lg text-center font-medium">Seblak Ceker Pedas</p>
+                    </div>
+                </div>
+                <div class="relative overflow-hidden group rounded-lg shadow-lg fade-in">
+                    <img src="suci.jpeg" alt="Seblak Bakso" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-4">
+                        <p class="text-white text-lg text-center font-medium">Seblak dengan Topping Bakso</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="bg-[#2c2c2c] text-gray-400 py-12 text-center">
+        <div class="container mx-auto px-6 md:px-12">
+            <p>&copy; 2024 Seblak. Semua Hak Cipta Dilindungi.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Animations and Interactions -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Smooth scroll for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            // Intersection Observer for scroll animations
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.2
+            });
+
+            const animatedElements = document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right');
+            animatedElements.forEach(el => observer.observe(el));
+
+            // Hero section animation
+            const heroTitle = document.querySelector('.hero-title');
+            const heroSubtitle = document.querySelector('.hero-subtitle');
+            const heroButton = document.querySelector('.hero-button');
+            
+            heroTitle.classList.add('animate-in');
+            heroSubtitle.classList.add('animate-in');
+            heroButton.classList.add('animate-in');
+        });
+    </script>
+</body>
+</html>
